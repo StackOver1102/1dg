@@ -45,7 +45,7 @@ export const login = (email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      'https://up-view.harokuapp.com/api/users/login',
+      'https://up-view.herokuapp.com/api/users/login',
       { email, password },
       config)
 
