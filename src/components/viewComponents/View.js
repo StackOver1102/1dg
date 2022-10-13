@@ -14,7 +14,7 @@ import { toast } from "react-toastify";
 import { updateMoney } from '../../Redux/Actions/userAction';
 import { createCashFlow } from '../../Redux/Actions/cashAction';
 import { updateWallet } from '../../Redux/Actions/WalletAction';
-
+import axios from 'axios';
 export default function View() {
     const location = useLocation();
     const redirect = location.search ? Number(location.search.split("=")[1]) : "";
@@ -138,6 +138,11 @@ export default function View() {
         if (userInfo) {
             setId(userInfo._id)
         }
+      
+
+
+
+
         dispatch(listProduct());
     }, [dispatch, userInfo]);
     return (

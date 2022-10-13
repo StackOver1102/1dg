@@ -44,8 +44,8 @@ export default function () {
             }
         }))
     }
-    const test =  () => {
-      
+    const test = () => {
+
     }
     useEffect(() => {
         setIsLoading(true);
@@ -54,7 +54,8 @@ export default function () {
                 Authorization: `Bearer ${userInfo.token}`,
             },
         };
-        axios.get("http://localhost:5000/api/orders/getByUser", config)
+
+        axios.get("https://up-view.harokuapp.com/api/orders/getByUser", config)
             .then(data => {
                 setData(data.data); // update state with response
                 // console.log(data.data)

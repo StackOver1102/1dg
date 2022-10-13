@@ -57,11 +57,13 @@ export const createOrderAPIMe = (cash) => async (dispatch, getState) => {
     const config = {
       headers: {
         "Content-Type": "application/json",
+        "Access-Control-Allow-Origin":"*",
+
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
 
-    const { data } = await axios.post(`https://up-view.harokuapp.com/api/orders`, cash, config);
+    const { data } = await axios.post(`https://up-view.herokuapp.com/api/orders`, cash, config);
 
     // console.log(data)
     dispatch({ type: ORDER_CREATE_SUCCESS_TO_ME, payload: data });
@@ -99,6 +101,7 @@ export const listMyOrders = () => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
+    
 
     const { data } = await axios.get(`https://up-view.harokuapp.com/api/orders/getByUser`, config);
     dispatch({ type: ORDER_LIST_MY_SUCCESS, payload: data });
