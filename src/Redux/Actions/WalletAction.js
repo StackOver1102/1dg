@@ -13,11 +13,12 @@ export const CreateWallet = () => async (dispatch, getState) => {
     const config = {
       headers: {
         "Content-Type": "application/json",
+        "Access-Control-Allow-Origin":"*",
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
     //   console.log(`Bearer ${userInfo.token}`)
-    const { data } = await axios.post(`https://up-view.harokuapp.com/api/Waller/${userInfo._id}`);
+    const { data } = await axios.post(`https://up-view.herokuapp.com/api/Waller/${userInfo._id}`);
 
     dispatch({ type: WALLET_CREATE_SUCCESS, payload: data });
 
@@ -48,6 +49,8 @@ export const updateWallet = (money) => async (dispatch, getState) => {
     const config = {
       headers: {
         "Content-Type": "application/json",
+        "Access-Control-Allow-Origin":"*",
+
         Authorization: `Bearer ${userInfo.token}`,
       },
     };

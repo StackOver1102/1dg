@@ -5,3 +5,4 @@ base="/"
 from="/*"
 to="/index.html"
 status=200
+/api/* https://debaratishop.herokuapp.com/:splat 200
