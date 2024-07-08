@@ -15,13 +15,13 @@ function Footer() {
                         <div className="rounded-lg border border-[#2e4b66] p-9 mb-10 bg-[#1a3a5c]">
                             <h2 className="text-white text-2xl mb-4">Would you need more information?</h2>
                             <span className="font-normal text-xl text-gray-300">Email us at
-                                <a href="mailto:tuantrangptkm@gmail.com" className="text-white opacity-75 hover:text-[#009ef7]"> tuantrangptkm@gmail.com</a>
+                                <a href="mailto:tuantranptkm@gmail.com" className="text-white opacity-75 hover:text-[#009ef7]"> tuantranptkm@gmail.com</a>
                             </span>
                         </div>
                         <div className="rounded-lg border border-[#2e4b66] p-9 mb-10 bg-[#1a3a5c]">
                             <h2 className="text-white text-2xl mb-4">Do you need reseller price?</h2>
                             <span className="font-normal text-xl text-gray-300">Email us at
-                                <a href="mailto:tuantrangptkm@gmail.com" className="text-white opacity-75 hover:text-[#009ef7]"> tuantrangptkm@gmail.com</a>
+                                <a href="mailto:tuantranptkm@gmail.com" className="text-white opacity-75 hover:text-[#009ef7]"> tuantranptkm@gmail.com</a>
                             </span>
                         </div>
                     </div>
@@ -36,9 +36,9 @@ function Footer() {
                             </div>
                             <div className="flex flex-col">
                                 <h4 className="font-semibold text-gray-400 mb-6">Contact Us</h4>
-                                <a href="/faqs" className="text-white opacity-75 hover:text-[#009ef7] text-lg mb-4">Phan Thanh Thao</a>
-                                <a href="/terms" className="text-white opacity-75 hover:text-[#009ef7] text-lg mb-4">tuantrangptkm@gmail.com</a>
-                                <a href="/services" className="text-white opacity-75 hover:text-[#009ef7] text-lg mb-4">+1 980286796</a>
+                                <a href="/faqs" className="text-white opacity-75 hover:text-[#009ef7] text-lg mb-4">TRAN ANH TUAN</a>
+                                <a href="/terms" className="text-white opacity-75 hover:text-[#009ef7] text-lg mb-4">tuantranptkm@gmail.com</a>
+                                <a href="/services" className="text-white opacity-75 hover:text-[#009ef7] text-lg mb-4">+1 8569308404</a>
                             </div>
                         </div>
                     </div>
