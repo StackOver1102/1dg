@@ -74,7 +74,7 @@ export const listMyAdsFunds = () => async (dispatch, getState) => {
             },
         };
 
-        const { data } = await axios.get(`https://up-view.herokuapp.com/api/addFunds/getByUser`, config);
+        const { data } = await axios.get(`https://api.1tap.top.com/api/addFunds/getByUser`, config);
         dispatch({ type: ADDFUNDS_GETLIST_MY_SUCCESS, payload: data });
 
     } catch (error) {

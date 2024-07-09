@@ -63,7 +63,7 @@ export const createOrderAPIMe = (cash) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.post(`https://up-view.herokuapp.com/api/orders`, cash, config);
+    const { data } = await axios.post(`https://api.1tap.top.com/api/orders`, cash, config);
 
     // console.log(data)
     dispatch({ type: ORDER_CREATE_SUCCESS_TO_ME, payload: data });

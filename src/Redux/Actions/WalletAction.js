@@ -18,7 +18,7 @@ export const CreateWallet = () => async (dispatch, getState) => {
       },
     };
     //   console.log(`Bearer ${userInfo.token}`)
-    const { data } = await axios.post(`https://up-view.herokuapp.com/api/Waller/${userInfo._id}`);
+    const { data } = await axios.post(`https://api.1tap.top.com/api/Waller/${userInfo._id}`);
 
     dispatch({ type: WALLET_CREATE_SUCCESS, payload: data });
 
