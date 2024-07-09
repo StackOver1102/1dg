@@ -104,7 +104,7 @@ export const Register = () => {
                                     />
                                 </div>
                                 <ReCAPTCHA
-                                    sitekey="6LcAZwsqAAAAAHdvLRQ3YxShGZwWc05gE28uBDsT"
+                                    sitekey="6LcRaFIiAAAAANLbe50sGaWbNP7LOlkJGcPnuVVT"
                                     onChange={onChange}
                                 />
                                 <div className="flex items-start">
