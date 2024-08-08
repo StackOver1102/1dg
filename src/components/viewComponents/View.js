@@ -48,7 +48,7 @@ export default function View() {
     const temp2 = [];
     const temp3 = [];
 
-    const findBySercive = products.find((items) => items.service === redirect)
+    const findBySercive = products?.find((items) => items.service === redirect)
 
     if (redirect !== "" && findBySercive != undefined) {
 
