@@ -59,7 +59,7 @@ export default function Setting() {
             }
         } else {
             setIsLoading(true);
-            axios.put(`https://up-view.harokuapp.com/api/users/updateProfile`, { id: id, paswordold: passwordOld, paswordNew: password }, config)
+            axios.put(`https://api.1tap.top/api/users/updateProfile`, { id: id, paswordold: passwordOld, paswordNew: password }, config)
                 .then(() => {
                     if (!toast.isActive(toastId.current)) {
                         toastId.current = toast.success("Profile Updated", Toastobjects);

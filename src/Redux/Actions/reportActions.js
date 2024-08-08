@@ -16,7 +16,7 @@ export const report = (reportOrder) => async (dispatch, getState) => {
             },
         };
         const { data } = await axios.post(
-            'https://up-view.harokuapp.com/api/report',
+            'https://api.1tap.top/api/report',
             reportOrder,
             config)
         dispatch({ type: REPORT_CREATE_SUCCESS, payload: data })
@@ -48,7 +48,7 @@ export const listMyMessage = () => async (dispatch, getState) => {
             },
         };
 
-        const { data } = await axios.get(`https://up-view.harokuapp.com/api/report/getByUser`, config);
+        const { data } = await axios.get(`https://api.1tap.top/api/report/getByUser`, config);
         dispatch({ type: MESSAGE_LIST_MY_SUCCESS, payload: data });
 
     } catch (error) {
@@ -80,7 +80,7 @@ export const messagelistDetailMessage = (id) => async (dispatch, getState) => {
             },
         };
 
-        const { data } = await axios.get(`https://up-view.harokuapp.com/api/report/${id}`, config);
+        const { data } = await axios.get(`https://api.1tap.top/api/report/${id}`, config);
         dispatch({ type: MESSAGE_DETAILS_LIST_MY_SUCCESS, payload: data });
 
     } catch (error) {

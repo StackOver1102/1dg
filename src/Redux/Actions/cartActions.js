@@ -3,7 +3,7 @@ import axios from "axios";
 
 // ADD TO CART
 export const addToCart = (id, qty,link) => async (dispatch, getState) => {
-    const { data } = await axios.get(`https://up-view.harokuapp.com/api/products/${id}`);
+    const { data } = await axios.get(`https://api.1tap.top/api/products/${id}`);
   
       dispatch({
       type: CART_ADD_ITEM,

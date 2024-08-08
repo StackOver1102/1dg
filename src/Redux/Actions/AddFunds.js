@@ -17,7 +17,7 @@ export const createAddFunds = (funds) => async (dispatch, getState) => {
             },
         };
 
-        const { data } = await axios.post(`https://up-view.harokuapp.com/api/addFunds`, funds, config);
+        const { data } = await axios.post(`https://api.1tap.top/api/addFunds`, funds, config);
         dispatch({ type: ADDFUNDS_CREATE_SUCCESS, payload: data });
         // localStorage.setItem("listMyOrders", JSON.stringify(data));
 

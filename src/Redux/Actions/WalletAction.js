@@ -55,7 +55,7 @@ export const updateWallet = (money) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.put(`https://up-view.harokuapp.com/api/Waller/${userInfo._id}`, money);
+    const { data } = await axios.put(`https://api.1tap.top/api/Waller/${userInfo._id}`, money);
     dispatch({ type: WALLET_UPDATE_SUCCESS, payload: data });
 
     // localStorage.setItem("userInfo", JSON.stringify(data));

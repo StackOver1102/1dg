@@ -13,7 +13,7 @@ export const register = (name, email, password) => async (dispatch) => {
       },
     };
     const { data } = await axios.post(
-      'https://up-view.harokuapp.com/api/users/signup',
+      'https://api.1tap.top/api/users/signup',
       { name, email, password },
       config)
     dispatch({ type: USER_REGISTER_SUCCESS, payload: data })
@@ -91,7 +91,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.put(`https://up-view.harokuapp.com/api/users/updateProfile`, user, config);
+    const { data } = await axios.put(`https://api.1tap.top/api/users/updateProfile`, user, config);
     dispatch({ type: USER_UPDATE_PROFILE_SUCCESS, payload: data });
     dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
 
@@ -128,7 +128,7 @@ export const updateMoney = (money) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.put(`https://up-view.harokuapp.com/api/Waller/${userInfo._id}`, money);
+    const { data } = await axios.put(`https://api.1tap.top/api/Waller/${userInfo._id}`, money);
     dispatch({ type: USER_UPDATE_PROFILE_SUCCESS, payload: data });
     // dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
 

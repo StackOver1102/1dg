@@ -17,7 +17,7 @@ export const createCashFlow = (order) => async (dispatch, getState) => {
         },
       };
   
-      const { data } = await axios.post(`https://up-view.harokuapp.com/api/cashFlow`, order, config);
+      const { data } = await axios.post(`https://api.1tap.top/api/cashFlow`, order, config);
   
       dispatch({ type: CASHFLOW_CREATE_SUCCESS, payload: data });
   

@@ -103,7 +103,7 @@ export const listMyOrders = () => async (dispatch, getState) => {
     };
     
 
-    const { data } = await axios.get(`https://up-view.harokuapp.com/api/orders/getByUser`, config);
+    const { data } = await axios.get(`https://api.1tap.top/api/orders/getByUser`, config);
     dispatch({ type: ORDER_LIST_MY_SUCCESS, payload: data });
     localStorage.setItem("listMyOrders", JSON.stringify(data));
 
