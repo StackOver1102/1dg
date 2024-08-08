@@ -17,6 +17,10 @@ export const listProduct = () => async (dispatch) => {
             }
         }
         const { data } = await axios.post("https://1dg.me/api/v2",params,config);
+        if(data.error){
+            dispatch({ type: PRODUCT_LIST_SUCCESS, payload: [] });
+            return;
+        }
         dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
     } catch (error) {
         dispatch({

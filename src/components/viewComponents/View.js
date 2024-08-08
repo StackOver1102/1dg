@@ -19,6 +19,7 @@ export default function View() {
 
     const productList = useSelector((state) => state.productList);
     const { loading, products } = productList;
+    console.log("🚀 ~ View ~ products:", products)
 
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
