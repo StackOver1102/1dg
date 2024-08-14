@@ -14,10 +14,10 @@ export default function Section(props) {
     //     location === item.path ? (item.current = true) : (item.current = false);
     // });
 
-   const dispatch = useDispatch();
+    const dispatch = useDispatch();
     const logoutHandler = () => {
         dispatch(logout());
-      };    
+    };
     const { check } = props
     const googleTranslateElementInit = () => {
         new window.google.translate.TranslateElement(
@@ -147,7 +147,7 @@ export default function Section(props) {
                 <main className='flex-auto w-full min-w-0 lg:static lg:max-h-full lg:overflow-visible lg:mt-10 mt-5 lg:ml-4'>
                     <div className='content flex-[1_0_auto]'>
                         {
-                            SidebarData.map((item) =>location=== item.path ? item.file : null) 
+                            SidebarData.map((item) => location === item.path ? item.file : null)
                         }
                     </div>
                 </main>

@@ -11,6 +11,8 @@ import Message from "../LoadingError/Error";
 import Toast from "./../LoadingError/Toast";
 import { toast } from "react-toastify";
 import { updateWallet } from '../../Redux/Actions/WalletAction';
+import { useServices } from '../../service/Service';
+import axios from 'axios';
 
 export default function View() {
     const location = useLocation();
@@ -19,7 +21,6 @@ export default function View() {
 
     const productList = useSelector((state) => state.productList);
     const { loading, products } = productList;
-    console.log("🚀 ~ View ~ products:", products)
 
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
@@ -35,6 +36,7 @@ export default function View() {
     const [id, setId] = useState('');
     const [startDate, setStartDate] = useState(new Date());
     const [checkBox, setCheckBox] = useState(false);
+    const [serviceId, setServiceId] = useState('');
     const toastId = React.useRef(null);
 
     useEffect(() => {
@@ -82,42 +84,53 @@ export default function View() {
 
     const { socialMediaName: initialSocialMedia, categoryName: initialCategory } = findProductDetails(redirect);
 
-    useEffect(() => {
-        if (redirect === "" && products.length > 0) {
-            setService(products.find(item => item.name.split('|')[1] === service)?.service);
-        }
-    }, [redirect, products, service]);
+    // useEffect(() => {
+    //     if (redirect === "" && products.length > 0) {
+    //         setService(products.find(item => item.name.split('|')[1] === service)?.service);
+    //     }
+    // }, [redirect, products, service]);
+
+    const { data: services, error, isLoading } = useServices();
+    if (isLoading) return <div>Loading...</div>;
+    if (error) return <div>Error: {error.message}</div>;
 
     const onSubmit = async () => {
-        await dispatch(addToCart(service, Number(quantity), link));
-        const items = JSON.parse(localStorage.getItem('cartItems'));
-        const itemRate = items[0].rate;
-        const totalPrice = Number(quantity) * itemRate / 1000;
-
-        if (wallet.balance > totalPrice) {
-            await dispatch(createOrder(service, link, Number(quantity)));
-            const order = JSON.parse(localStorage.getItem('ordersInfo'));
-
+        // await dispatch(addToCart(service, Number(quantity), link));
+        // const items = JSON.parse(localStorage.getItem('cartItems'));
+        // const itemRate = items[0].rate;
+        const totalPrice = Number(quantity) * 42;
+        if (wallet.balance < totalPrice) {
+            if (!service || !link || !quantity) {
+                alert("Please fill in all information")
+                return;
+            }
+            localStorage.setItem("ordersInfo", JSON.stringify({
+                link,
+                quantity: Number(quantity),
+                service_id: service,
+            }));
+            // const sendReq = await axios.post("")
             await dispatch(createOrderAPIMe({
-                orderItems: {
-                    service,
-                    link,
-                    qty: Number(quantity),
-                    order: order.order || 0,
-                    name: redirect === "" ? items[0].name.split(`${socialMedia}|${category} |`)[1] : Service[0]
-                },
-                totalPrice
+                link,
+                quantity: Number(quantity),
+                service_id: service,
+                // order: order.order || 0,
+                // name: redirect === "" ? items[0].name.split(`${socialMedia}|${category} |`)[1] : Service[0]
+                // totalPrice
             }));
 
-            if (order.order !== undefined) {
-                await dispatch(updateWallet({ amount: -totalPrice.toFixed(2) }));
+            const order = JSON.parse(localStorage.getItem('ordersInfo'));
+
+
+            if (order == undefined) {
+                // await dispatch(updateWallet({ amount: -totalPrice.toFixed(2) }));
 
                 if (!toast.isActive(toastId.current)) {
                     toastId.current = toast.success("Order thành công", Toastobjects);
                 }
             } else {
                 if (!toast.isActive(toastId.current)) {
-                    toastId.current = toast.error(order.error, Toastobjects);
+                    toastId.current = toast.error("Order not success!", Toastobjects);
                 }
             }
         } else {
@@ -126,12 +139,12 @@ export default function View() {
             }
         }
 
-        await dispatch(listMyOrders());
+        // await dispatch(listMyOrders());
     };
 
-    const Social = extractUniqueValues(products.map(item => item.name.split("|")[0]), '|');
-    const Category = socialMedia ? getCategoryFromProduct(socialMedia) : [];
-    const Service = category ? getServiceFromProduct(socialMedia, category) : [];
+    const Social = ["Select Social", "YouTube", "Facebook"]
+    const Category = ["Select Category", "Youtube View"]
+    const Service = []
 
     return (
         <>
@@ -176,7 +189,8 @@ export default function View() {
                         Service
                     </label>
                     <select onChange={(e) => setService(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        {Service.map((item, index) => <option key={index} value={item}>{item}</option>)}
+                        <option>Select Service</option>
+                        {services.map((item, index) => <option key={index} value={item._id}>{item.label}</option>)}
                     </select>
                 </div>
 
@@ -195,7 +209,7 @@ export default function View() {
                     <span className="text-[#009ef7] text-[.95rem] font-medium">Min: 10 - Max: 10000</span>
                 </div>
 
-                <div className='mb-2 lg:col-span-3'>
+                {/* <div className='mb-2 lg:col-span-3'>
                     <label htmlFor="checked-toggle" className="inline-flex relative items-center cursor-pointer">
                         <input type="checkbox" value="" id="checked-toggle" className="sr-only peer" onChange={(e) => setCheckBox(e.target.checked)} />
                         <div className="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
@@ -209,11 +223,11 @@ export default function View() {
                             <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} className="w-full" />
                         </div>
                     </div>
-                )}
+                )} */}
 
                 <div className='mb-2 lg:col-span-3'>
                     <button onClick={onSubmit} type="button" className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                        + Submit
+                        Submit
                     </button>
                 </div>
             </div>

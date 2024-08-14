@@ -63,13 +63,16 @@ export const createOrderAPIMe = (cash) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.post(`https://api.1tap.top/api/orders`, cash, config);
+    const { data, status } = await axios.post(`https://api.1tap.top/api/orders`, cash, config);
 
     // console.log(data)
-    dispatch({ type: ORDER_CREATE_SUCCESS_TO_ME, payload: data });
-    dispatch({ type: CART_CLEAR_ITEMS, payload: data });
+    if (status === 200) {
+      dispatch({ type: ORDER_CREATE_SUCCESS_TO_ME, payload: data });
+      dispatch({ type: CART_CLEAR_ITEMS, payload: data });
+      localStorage.removeItem("cartItems")
+      localStorage.removeItem('ordersInfo')
+    }
     // listMyOrders();
-    localStorage.removeItem("cartItems")
 
   } catch (error) {
     const message =
