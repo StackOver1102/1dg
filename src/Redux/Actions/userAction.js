@@ -45,7 +45,7 @@ export const login = (email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      'https://api.1tap.top.com/api/users/login',
+      'https://api.1tap.top/api/users/login',
       { email, password },
       config)
 
@@ -167,7 +167,7 @@ export const loginadm = (email, password) => async (dispatch) => {
     };
 
     const { data } = await axios.post(
-      `https://api.1tap.top.com/api/users/login`,
+      `https://api.1tap.top/api/users/login`,
       { email, password },
       config
     );
