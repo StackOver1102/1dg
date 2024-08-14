@@ -55,7 +55,7 @@ export default function () {
             },
         };
 
-        axios.get("https://up-view.harokuapp.com/api/orders/getByUser", config)
+        axios.get("https://api.1tap.top/api/orders/getByUser", config)
             .then(data => {
                 setData(data.data); // update state with response
                 // console.log(data.data)
