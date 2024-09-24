@@ -34,9 +34,7 @@ export default function View() {
     const [category, setCategory] = useState("");
     const [socialMedia, setSocialMedia] = useState("");
     const [id, setId] = useState('');
-    const [startDate, setStartDate] = useState(new Date());
-    const [checkBox, setCheckBox] = useState(false);
-    const [serviceId, setServiceId] = useState('');
+    const [filter, setFilter] = useState()
     const toastId = React.useRef(null);
 
     useEffect(() => {
@@ -56,41 +54,22 @@ export default function View() {
         progress: undefined,
     };
 
-    const extractUniqueValues = (items, separator) => {
-        const uniqueSet = new Set(items.map(item => item.split(separator)[0]));
-        return [...uniqueSet];
-    };
-
-    const getCategoryFromProduct = (socialMediaName) => {
-        return products
-            .filter(item => item.name.split("|")[0] === socialMediaName)
-            .map(item => item.category.split(`${socialMediaName}|`)[1]);
-    };
-
-    const getServiceFromProduct = (socialMediaName, categoryName) => {
-        return products
-            .filter(item => item.category.split(`${socialMediaName}|`)[1] === categoryName)
-            .map(item => item.name.split(`${socialMediaName}|${categoryName} |`)[1]);
-    };
-
-    const findProductDetails = (redirectValue) => {
-        const foundProduct = products.find(item => item.service === redirectValue);
-        if (foundProduct) {
-            const [socialMediaName, categoryName, serviceName] = foundProduct.name.split('|');
-            return { socialMediaName, categoryName, serviceName };
-        }
-        return {};
-    };
-
-    const { socialMediaName: initialSocialMedia, categoryName: initialCategory } = findProductDetails(redirect);
-
-    // useEffect(() => {
-    //     if (redirect === "" && products.length > 0) {
-    //         setService(products.find(item => item.name.split('|')[1] === service)?.service);
-    //     }
-    // }, [redirect, products, service]);
-
     const { data: services, error, isLoading } = useServices();
+    useEffect(() => {
+        // Khi service hoặc services thay đổi, kiểm tra xem có service nào khớp không
+        if (service && services) {
+            // Tìm kiếm service trong danh sách services
+            const foundService = services.find(s => s.value === service);
+
+            // Nếu tìm thấy service, cập nhật state
+            if (foundService) {
+                setFilter(foundService);
+            } else {
+                console.log("Service không tồn tại");
+            }
+        }
+    }, [service]); 
+
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>Error: {error.message}</div>;
 
@@ -99,7 +78,8 @@ export default function View() {
         // const items = JSON.parse(localStorage.getItem('cartItems'));
         // const itemRate = items[0].rate;
         const totalPrice = Number(quantity) * 42;
-        if (wallet.balance < totalPrice) {
+  
+        if (wallet.balance > totalPrice) {
             if (!service || !link || !quantity) {
                 alert("Please fill in all information")
                 return;
@@ -144,8 +124,7 @@ export default function View() {
 
     const Social = ["Select Social", "YouTube", "Facebook"]
     const Category = ["Select Category", "Youtube View"]
-    const Service = []
-
+ 
     return (
         <>
             <Toast />
@@ -190,7 +169,7 @@ export default function View() {
                     </label>
                     <select onChange={(e) => setService(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <option>Select Service</option>
-                        {services.map((item, index) => <option key={index} value={item._id}>{item.label}</option>)}
+                        {services.map((item, index) => <option key={index} value={item.value}>{item.label}</option>)}
                     </select>
                 </div>
 
@@ -206,7 +185,7 @@ export default function View() {
                         Quantity
                     </label>
                     <input onChange={(e) => setQuantity(e.target.value)} type="text" id="default-input" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="From 10 to 10000" />
-                    <span className="text-[#009ef7] text-[.95rem] font-medium">Min: 10 - Max: 10000</span>
+                    <span className="text-[#009ef7] text-[.95rem] font-medium">Min: {filter?.min} - Max: {filter?.max}</span>
                 </div>
 
                 {/* <div className='mb-2 lg:col-span-3'>
