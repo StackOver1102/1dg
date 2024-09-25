@@ -98,7 +98,7 @@ export default function Navbar(props) {
                             <img alt="Logo" src={logo} className="lg:hidden h-[25px] w-[100px]"></img>
                         </Link>
                     </div>
-                    <div className="ml-6 xl:ml-16 xl:pl-4">
+                    {/* <div className="ml-6 xl:ml-16 xl:pl-4">
 
                         <button className='flex items-center space-x-2 border border-gray-900/10 shadow-sm px-3 py-1.5 hover:border-gray-300 focus:outline-none focus:border-gray-300  rounded-lg  w-72' onClick={() => setIsOpen(!isOpen)}>
                             <svg width="24" height="24" fill="none" aria-hidden="true" className="flex-none -ml-1 text-gray-500">
@@ -112,7 +112,7 @@ export default function Navbar(props) {
                             </span>
                         </button>
                         {Modal()}
-                    </div>
+                    </div> */}
                 </div>
                 <div className='flex items-center'>
 

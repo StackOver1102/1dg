@@ -35,6 +35,7 @@ export default function View() {
     const [socialMedia, setSocialMedia] = useState("");
     const [id, setId] = useState('');
     const [filter, setFilter] = useState()
+    console.log("🚀 ~ View ~ filter:", filter)
     const toastId = React.useRef(null);
 
     useEffect(() => {
@@ -77,13 +78,14 @@ export default function View() {
         // await dispatch(addToCart(service, Number(quantity), link));
         // const items = JSON.parse(localStorage.getItem('cartItems'));
         // const itemRate = items[0].rate;
-        const totalPrice = Number(quantity) * 42;
-  
+        if (!service || !link || !quantity || !filter) {
+            alert("Please fill in all information")
+            return;
+        }
+   
+        const totalPrice = Number(quantity) * filter?.rate;
         if (wallet.balance > totalPrice) {
-            if (!service || !link || !quantity) {
-                alert("Please fill in all information")
-                return;
-            }
+         
             localStorage.setItem("ordersInfo", JSON.stringify({
                 link,
                 quantity: Number(quantity),

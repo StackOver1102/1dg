@@ -49,26 +49,24 @@ const Header = () => {
                 </div>
                 <div className={open ? "justify-between items-center w-full md:flex md:w-auto md:order-1" : "hidden justify-between items-center w-full md:flex md:w-auto md:order-1"} id="navbar-sticky">
                     <ul className={color ? "flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700" : "flex flex-col p-4 mt-4 bg-[#13263c] rounded-lg border border-[#13263c] md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-[#13263c] dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"}>
-
-                        <li >
-                            <Link to="#" spy={true} smooth={true} offset={-100} duration={500} className="block py-2 pr-4 pl-3 text-[#a1a5b7] bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white" >Home</Link>
-                        </li>
-                        <li >
-                            <Link to="test" spy={true} smooth={true} offset={-100} duration={500} className="block py-2 pr-4 pl-3 text-[#a1a5b7] rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">How it Works</Link>
-                        </li >
                         <li>
-                            <Link to="achievements" spy={true} smooth={true} offset={-100} duration={500} className="block py-2 pr-4 pl-3 text-[#a1a5b7] rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Achievements</Link>
+                            <Link to="home" spy={true} smooth={true} offset={-100} duration={500} className="block py-2 pr-4 pl-3 text-[#a1a5b7] bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white">Home</Link>
                         </li>
-                        <li >
-                            <Link to="Pricing" spy={true} smooth={true} offset={-100} duration={500} className="block py-2 pr-4 pl-3 text-[#a1a5b7] rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Pricing</Link>
+                        <li>
+                            <Link to="test" spy={true} smooth={true} offset={-100} duration={500} className="block py-2 pr-4 pl-3 text-[#a1a5b7] rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">How it Works</Link>
                         </li>
-                        <li >
-                            <a href="/services" className="block py-2 pr-4 pl-3 text-[#a1a5b7] rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Services</a>
+                        <li>
+                            <Link to="achievements" spy={true} smooth={true} offset={-100} duration={500} className="block py-2 pr-4 pl-3 text-[#a1a5b7] rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Achievements</Link>
                         </li>
-                        <li >
-                            <a href="/signup" className={userInfo ? " py-2 pr-4 pl-3 text-[#a1a5b7] rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 hidden" : "block py-2 pr-4 pl-3 text-[#a1a5b7] rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 "}>Sign up</a>
+                        <li>
+                            <Link to="pricing" spy={true} smooth={true} offset={-100} duration={500} className="block py-2 pr-4 pl-3 text-[#a1a5b7] rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Pricing</Link>
                         </li>
-
+                        <li>
+                            <Link to="/services" className="block py-2 pr-4 pl-3 text-[#a1a5b7] rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Services</Link>
+                        </li>
+                        <li>
+                            <Link to="/signup" className={userInfo ? "hidden" : "block py-2 pr-4 pl-3 text-[#a1a5b7] rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"}>Sign up</Link>
+                        </li>
                     </ul>
                 </div>
             </div>
