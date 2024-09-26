@@ -94,7 +94,7 @@ export default function Navbar(props) {
                     </button>
                     <div className="flex justify-between items-center">
                         <Link to="/" className="flex">
-                            <img alt="Logo" src={logo} className="hidden lg:inline h-[30px]" />
+                            <img alt="Logo" src={logo} className="hidden lg:inline h-[70px]" />
                             <img alt="Logo" src={logo} className="lg:hidden h-[25px] w-[100px]"></img>
                         </Link>
                     </div>
