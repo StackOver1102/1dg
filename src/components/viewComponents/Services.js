@@ -12,47 +12,47 @@ export default function Service() {
   const [currentPage, setCurrentPage] = useState(1); // Current page
   const itemsPerPage = 13; // Items per page
   const [filteredServices, setFilteredServices] = useState([]); // For filtered results
-
+  
   // UseEffect to handle search filtering
   useEffect(() => {
-    let filtered = services;
-
-    // Search filter
-    if (searchService) {
-      filtered = filtered.filter((service) =>
-        service.label.toLowerCase().includes(searchService.toLowerCase())
-      );
-    }
-
-    // Price filter
-    if (filterPrice !== 'All') {
-      switch (filterPrice) {
-        case 'low':
-          filtered = filtered.filter(service => service.rate < 1);
-          break;
-        case 'medium':
-          filtered = filtered.filter(service => service.rate >= 1 && service.rate <= 5);
-          break;
-        case 'high':
-          filtered = filtered.filter(service => service.rate > 5);
-          break;
-        default:
-          break;
+    if (services) {
+      let filtered = services;
+  
+      // Search filter
+      if (searchService) {
+        filtered = filtered.filter((service) =>
+          service.label.toLowerCase().includes(searchService.toLowerCase())
+        );
       }
+  
+      // Price filter
+      if (filterPrice !== 'All') {
+        switch (filterPrice) {
+          case 'low':
+            filtered = filtered.filter(service => service.rate < 1);
+            break;
+          case 'medium':
+            filtered = filtered.filter(service => service.rate >= 1 && service.rate <= 5);
+            break;
+          case 'high':
+            filtered = filtered.filter(service => service.rate > 5);
+            break;
+          default:
+            break;
+        }
+      }
+  
+      setFilteredServices(filtered);
+      setCurrentPage(1); // Reset to first page on filter change
     }
-
-    setFilteredServices(filtered);
-    setCurrentPage(1); // Reset to first page on filter change
   }, [searchService, filterPrice, services]);
-  if (error) return <div>Error: {error.message}</div>;
-  if (isLoading) return <div>Loading...</div>;
-
-
+  
   // Pagination calculations
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentServices = filteredServices.slice(indexOfFirstItem, indexOfLastItem);
-  const totalPages = Math.ceil(filteredServices.length / itemsPerPage);
+  const currentServices = filteredServices?.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(filteredServices?.length / itemsPerPage);
+  
 
   return (
     <div className="overflow-x-auto relative shadow-md sm:rounded-lg">
