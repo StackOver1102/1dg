@@ -48,9 +48,9 @@ function Footer() {
             <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-10 lg:px-12">
                 <div className="flex items-center justify-between">
                     <a href="/">
-                        <img alt="Logo" src="https://1dg.me/assets/media/favicon.ico" className="h-5 md:h-6" />
+                        <img alt="Logo" src={logo} className="h-[100px]" />
                     </a>
-                    <span className="text-gray-600 text-base md:text-lg">© 2022 1DG SMM Panel - Social Services</span>
+                    <span className="text-gray-600 text-base md:text-lg">© 2022 1TAP SMM Panel - Social Services</span>
                 </div>
             </div>
         </div>

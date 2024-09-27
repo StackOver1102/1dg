@@ -13,8 +13,8 @@ export default function Ticker() {
         <>
             <Helmet>
                 <meta charSet="utf-8" />
-                <title>Tickets | 1DG SMM Panel - Social Services</title>
-                <meta name="description" content="1DG SMM Panel - Social Services. Generating leads with social media marketing" />
+                <title>Tickets | 1TAP SMM Panel - Social Services</title>
+                <meta name="description" content="1TAP SMM Panel - Social Services. Generating leads with social media marketing" />
             </Helmet>
             <Header onDelete={hanldeDelete} />
             <Section check={check} />

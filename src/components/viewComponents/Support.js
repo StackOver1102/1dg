@@ -51,7 +51,7 @@ export default function Support() {
                                                 Facebook
                                             </span>
                                             <span className='font-semibold text-gray-800 block text-[1.075rem]'>
-                                                https://www.facebook.com/1dg.me
+                                                https://www.facebook.com/1tap.me
                                             </span>
                                         </div>
                                     </div>
@@ -67,7 +67,7 @@ export default function Support() {
                                                 Telegram
                                             </span>
                                             <span className='font-semibold text-gray-800 block text-[1.075rem]'>
-                                                @lethang1dg
+                                                @lethang1tap
                                             </span>
                                         </div>
                                     </div>

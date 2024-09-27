@@ -66,8 +66,8 @@ export const Login = () => {
             <Toast />
             <Helmet>
                 <meta charSet="utf-8" />
-                <title>Login | 1DG SMM Panel - Social Services</title>
-                <meta name="description" content="1DG SMM Panel - Social Services. Generating leads with social media marketing" />
+                <title>Login | 1TAP SMM Panel - Social Services</title>
+                <meta name="description" content="1TAP SMM Panel - Social Services. Generating leads with social media marketing" />
             </Helmet>
             <div className='flex flex-col flex-1'>
 

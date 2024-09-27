@@ -57,8 +57,8 @@ export const Register = () => {
         <div className='flex flex-col flex-1'>
             <Helmet>
                 <meta charSet="utf-8" />
-                <title>Register | 1DG SMM Panel - Social Services</title>
-                <meta name="description" content="1DG SMM Panel - Social Services. Generating leads with social media marketing" />
+                <title>Register | 1TAP SMM Panel - Social Services</title>
+                <meta name="description" content="1TAP SMM Panel - Social Services. Generating leads with social media marketing" />
             </Helmet>
             <div className="flex flex-col flex-[0_1_auto] bg-contain bg-bottom bg-fixed	bg-no-repeat bg-[url('https://1dg.me/assets/media/bg-1.png')] ">
                 <div className='flex justify-center items-center flex-col flex-[0_1_auto] p-10 lg:pb-20'>

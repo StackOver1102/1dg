@@ -13,8 +13,8 @@ export default function AddFunds() {
     <>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>AddFunds | 1DG SMM Panel - Social Services</title>
-        <meta name="description" content="1DG SMM Panel - Social Services. Generating leads with social media marketing" />
+        <title>AddFunds | 1TAP SMM Panel - Social Services</title>
+        <meta name="description" content="1TAP SMM Panel - Social Services. Generating leads with social media marketing" />
       </Helmet>
       <Header onDelete={hanldeDelete} />
       <Section check={check} />

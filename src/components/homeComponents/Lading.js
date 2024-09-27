@@ -14,7 +14,7 @@ function Lading() {
                     with
                     <span id="temp">
                         <span className="pl-2">
-                            1DG SMM Panel - Social Services
+                            1TAP SMM Panel - Social Services
                         </span>
                     </span>
 
@@ -24,7 +24,7 @@ function Lading() {
                     <Link to="/signup" className={userInfo ? "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-8 py-5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 hidden" : "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-8 py-5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"}>Sign up now!</Link>
 
                 </div>
-                <div className="px-4 mx-auto text-center md:max-w-screen-md lg:max-w-screen-lg lg:px-36">
+                {/* <div className="px-4 mx-auto text-center md:max-w-screen-md lg:max-w-screen-lg lg:px-36">
                     <div className="flex flex-wrap justify-center items-center mt-8 text-red-400 sm:justify-between">
                         <div className="flex " data-bs-toggle="tooltip" data-bs-original-title="" title="">
                             <img src="https://1dg.me/assets/client//media/svg/brand-logos/youtube.svg" className="max-h-10 " alt="" />
@@ -49,7 +49,7 @@ function Lading() {
                         </div>
 
                     </div>
-                </div>
+                </div> */}
             </div>
         </section>
     )

@@ -139,7 +139,7 @@ export default function View() {
                     <p>
                         <span className='color'>
                             You can get an SMM Panel like us (It is just a panel, and not services):
-                            <a href="http://localhost:3000/signup" rel="noopener noreferrer" target="_blank" className='text-[#009ef7] hover:text-[#006dab] contact'>1DG Panel</a>
+                            <a href="http://localhost:3000/signup" rel="noopener noreferrer" target="_blank" className='text-[#009ef7] hover:text-[#006dab] contact'>1TAP Panel</a>
                         </span>
                     </p>
                 </div>

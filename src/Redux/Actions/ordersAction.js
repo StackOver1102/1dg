@@ -2,7 +2,7 @@ import { ORDER_CREATE_FAIL, ORDER_CREATE_FAIL_TO_ME, ORDER_CREATE_REQUEST, ORDER
 import axios from "axios";
 import { CART_CLEAR_ITEMS } from "../Constants/CartContants";
 import {logout} from "./userAction"
-// CREATE ORDER TO API 1DG
+// CREATE ORDER TO API 1TAP
 export const createOrder = (service, link, quantity) => async (dispatch) => {
   try {
     const params = new URLSearchParams()

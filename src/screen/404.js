@@ -8,8 +8,8 @@ export default function Error404() {
         <div className="h-screen w-screen bg-gray-50 flex items-center">
            <Helmet>
                 <meta charSet="utf-8" />
-                <title>404 | 1DG SMM Panel - Social Services</title>
-                <meta name="description" content="1DG SMM Panel - Social Services. Generating leads with social media marketing" />
+                <title>404 | 1TAP SMM Panel - Social Services</title>
+                <meta name="description" content="1TAP SMM Panel - Social Services. Generating leads with social media marketing" />
             </Helmet>
             <div className="container flex flex-col md:flex-row items-center justify-between px-5 text-gray-700">
                 <div className="w-full lg:w-1/2 mx-8">
