@@ -74,7 +74,7 @@ export const Login = () => {
                 <div className="flex lg:h-[900px] h-[750px] flex-col flex-[0_1_auto] bg-contain bg-bottom bg-fixed	bg-no-repeat bg-[url('https://1dg.me/assets/media/bg-1.png')] ">
                     <div className='flex justify-center items-center flex-col flex-[0_1_auto] p-10 lg:pb-20'>
                         <a href="/" className="mb-12">
-                            <img alt="Logo" src={logo} className="h-[40px]" />
+                            <img alt="Logo" src={logo} className="h-[150px]" />
                         </a>
                         <div className="w-full  bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
                             {error && <Message variant="bg-red-500 text-white font-bold rounded-t px-4 py-2 ">{error}</Message>}
