@@ -9,10 +9,6 @@ import { report } from '../../Redux/Actions/reportActions'
 
 export default function () {
     const dispatch = useDispatch()
-    const orderUser = useSelector((state) => state.orderUser)
-    const { orders } = orderUser
-    const statusOrders = useSelector((state) => state.statusOrders)
-    const { status } = statusOrders
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
     const [data, setData] = useState([]); // no data yet
@@ -21,18 +17,9 @@ export default function () {
     const [order, setOrders] = useState(0)
     const [request, setRequest] = useState('Cancel')
     const [message, setMessage] = useState('')
-    function getStatus(orders) {
-        return status[orders]?.status
-    }
-    function getCharge(orders) {
-        return status[orders]?.charge
-    }
-    function getCount(orders) {
-        return status[orders]?.start_count
-    }
-    function getRemains(orders) {
-        return status[orders]?.remains
-    }
+    const [currentPage, setCurrentPage] = useState(1);
+    const [recordsPerPage] = useState(10);
+
     const handlerSendReport = () => {
         const temp = document.getElementById('order').value
 
@@ -44,9 +31,7 @@ export default function () {
             }
         }))
     }
-    const test = () => {
 
-    }
     useEffect(() => {
         setIsLoading(true);
         const config = {
@@ -68,6 +53,12 @@ export default function () {
             .finally(() => setIsLoading(false)); // complete loading success/fail
     }, [])
 
+    const indexOfLastRecord = currentPage * recordsPerPage;
+    const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+    const currentRecords = data.slice(indexOfFirstRecord, indexOfLastRecord);
+    const totalPages = Math.ceil(data.length / recordsPerPage);
+
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
     return (
         <>
             <div className='grid grid-cols-4 gap-2'>
@@ -117,23 +108,41 @@ export default function () {
                             {
                                 data.map((item, indew) => item.orderItems[0].order !== 0 ? (<tr key={indew} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                     <td className="py-1 px-1 font-medium text-gray-900 whitespace-nowrap dark:text-white w-[12%] border-[1px] border-solid border-[#dadaeb] ">
-                                        <p className="m-0 font-semibold">{item.orderItems[0].order}</p>
-                                        <p className="m-0 font-semibold text-[#7239ea]">{getStatus(item.orderItems[0].order)} </p>
-                                        <p className="m-0 text-[.75rem] text-gray-600">{item.createdAt}</p>
-                                        <p className="m-0 text-[.75rem] text-gray-600"> 2022-09-26 18:00:11</p>
+                                        {/* <p className="m-0 font-semibold">{item.orderItems[0].order}</p> */}
+                                        <p className="m-0 font-semibold text-[#7239ea]">{(item.orderStatus)} </p>
+                                        <p className="m-0 text-[.75rem] text-gray-600"> {new Date(item.createdAt).toLocaleString("vi-VN", {
+                                            timeZone: 'Asia/Bangkok', // UTC +7
+                                            year: 'numeric',
+                                            month: '2-digit',
+                                            day: '2-digit',
+                                            hour: '2-digit',
+                                            minute: '2-digit',
+                                            second: '2-digit',
+                                            hour12: false // 24-hour format
+                                        })}</p>
+                                        <p className="m-0 text-[.75rem] text-gray-600"> {new Date(item.updatedAt).toLocaleString("vi-VN", {
+                                            timeZone: 'Asia/Bangkok', // UTC +7
+                                            year: 'numeric',
+                                            month: '2-digit',
+                                            day: '2-digit',
+                                            hour: '2-digit',
+                                            minute: '2-digit',
+                                            second: '2-digit',
+                                            hour12: false // 24-hour format
+                                        })}</p>
                                     </td>
                                     <td className=" px-1  border-[1px] border-solid border-[#dadaeb] lg:w-[70%] w-[60%]  ">
                                         <div>
-                                            <p className='m-0 text-gray-600'>
+                                            <p className='m-0 text-gray-600 text-lg'>
                                                 <svg className='inline-block' xmlns="http://www.w3.org/2000/svg" width="1.13em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 576 512"><path fill="red" d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597c-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821c11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205l-142.739 81.201z" /></svg>
                                                 <span className="text-gray-800 font-medium"> {item.orderItems[0].service} </span>
                                                 {item.orderItems[0].name}
                                             </p>
-                                            <p className='mb-0'>
-                                                <span className="bg-[#50cd89] text-[#fff] text-xs font-semibold  px-2.5 py-0.5 rounded-lg dark:bg-green-200 dark:text-green-900 text-[0.7rem] mr-1">Instant</span>
-                                                <span className="bg-[#50cd89] text-[#fff] text-xs font-semibold  px-2.5 py-0.5 rounded-lg dark:bg-green-200 dark:text-green-900 text-[0.7rem] mr-1">30 days Refill</span>
+                                            <p className='mb-0 text-lg'>
+                                                <span className="bg-[#50cd89] text-[#fff] text-xl font-semibold  px-2.5 py-0.5 rounded-lg dark:bg-green-200 dark:text-green-900 text-[0.7rem] mr-1">Instant</span>
+                                                <span className="bg-[#50cd89] text-[#fff] text-xl font-semibold  px-2.5 py-0.5 rounded-lg dark:bg-green-200 dark:text-green-900 text-[0.7rem] mr-1">30 days Refill</span>
                                             </p>
-                                            <p className="m-0 wrap">{item.orderItems[0].link}</p>
+                                            <p className="m-0 wrap text-lg">{item.orderItems[0].link}</p>
                                         </div>
                                         <div className='float-right' >
 
@@ -181,29 +190,27 @@ export default function () {
                                                     </div>
                                                 </div>
                                             </div>
-
-
                                         </div>
                                     </td>
                                     <td className=" px-1  border-[1px] border-solid border-[#dadaeb] w-[12%]">
-                                        <p className="m-0font-medium">
+                                        <p className="m-0 font-medium  ">
                                             <span className="text-gray-600">Charge:</span>
                                             <a >
-                                                <span className="text-[#009ef7]">${getCharge(item.orderItems[0].order)}</span>
+                                                <span className="text-[#009ef7]">${item.charge}</span>
                                             </a>
                                         </p>
-                                        <p className="m-0font-medium">
+                                        <p className="m-0 font-medium">
                                             <span className="text-gray-600">Quantity:</span>
-                                            {item.orderItems[0].qty}
+                                            {item.orderItems[0].quantity}
                                         </p>
-                                        <p className="m-0font-medium">
+                                        <p className="m-0 font-medium">
                                             <span className="text-gray-600">Start count:</span>
-                                            {getCount(item.orderItems[0].order)}
+                                            {item.start_count}
 
                                         </p>
-                                        <p className="m-0font-medium">
+                                        <p className="m-0 font-medium">
                                             <span className="text-gray-600">Remains:</span>
-                                            {getRemains(item.orderItems[0].order)}
+                                            {item.remains}
                                         </p>
                                     </td>
                                 </tr>) : null
@@ -213,8 +220,31 @@ export default function () {
                     </table>
 
                 </div>
-
-
+                <div className="pagination mt-4">
+                    <button
+                        onClick={() => paginate(currentPage - 1)}
+                        disabled={currentPage === 1}
+                        className="px-3 py-1 bg-gray-300 text-black rounded mr-2"
+                    >
+                        Previous
+                    </button>
+                    {Array.from({ length: totalPages }, (_, index) => (
+                        <button
+                            key={index}
+                            onClick={() => paginate(index + 1)}
+                            className={`px-3 py-1 ${index + 1 === currentPage ? 'bg-blue-500 text-white' : 'bg-gray-300 text-black'} rounded mr-2`}
+                        >
+                            {index + 1}
+                        </button>
+                    ))}
+                    <button
+                        onClick={() => paginate(currentPage + 1)}
+                        disabled={currentPage === totalPages}
+                        className="px-3 py-1 bg-gray-300 text-black rounded"
+                    >
+                        Next
+                    </button>
+                </div>
 
             </div >
 
